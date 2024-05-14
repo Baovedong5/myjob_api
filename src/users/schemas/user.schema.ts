@@ -20,8 +20,8 @@ export class User {
   @Prop()
   phoneNumber: string;
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Village' })
-  village: string;
+  @Prop()
+  address: string;
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'District' })
   district: string;
