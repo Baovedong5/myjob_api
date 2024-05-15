@@ -6,6 +6,10 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { CaslModule } from './casl/casl.module';
+import { CompaniesModule } from './companies/companies.module';
+import { CitiesModule } from './cities/cities.module';
+import { DistrictsModule } from './districts/districts.module';
+import { ActiveFieldsModule } from './active-fields/active-fields.module';
 import mongooseDelete from 'mongoose-delete';
 
 @Module({
@@ -15,7 +19,7 @@ import mongooseDelete from 'mongoose-delete';
       useFactory: async (configService: ConfigService) => ({
         uri: configService.get<string>('MONGO_URL'),
         connectionFactory: (connection) => {
-          connection.plugin(mongooseDelete);
+          connection.plugin(mongooseDelete, { overrideMethods: 'all' });
           return connection;
         },
       }),
@@ -27,6 +31,10 @@ import mongooseDelete from 'mongoose-delete';
     UsersModule,
     AuthModule,
     CaslModule,
+    CompaniesModule,
+    CitiesModule,
+    DistrictsModule,
+    ActiveFieldsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
